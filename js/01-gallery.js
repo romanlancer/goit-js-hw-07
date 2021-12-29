@@ -29,17 +29,29 @@ function createGalleryCardsMarkup(galleryItems) {
 }
 
 galleryEl.addEventListener('click', onPictureClick)
+// galleryEl.addEventListener('keydown', onEscBtnPress)
 
 function onPictureClick(e) {
   e.preventDefault()
   if (!e.target.classList.contains('gallery__image')) {
     return
   }
-  // console.log(event.target);
-  // window.addEventListener('keydown', onEscBtnPress)
-  // modalRef.classList.add('is-open')
+
   imageRef.src = e.target.dataset.source
-  const instance = basicLightbox.create(`<img src="${imageRef.src}"/>`)
+
+  const instance = basicLightbox.create(
+    `<img src="${imageRef.src}" alt="${imageRef.alt}" />`
+  )
 
   instance.show()
+
+  if (instance.show()) {
+    window.addEventListener('keydown', onEscBtnPress)
+  }
+
+  function onEscBtnPress(e) {
+    if (e.code === 'Escape') {
+      instance.close()
+    }
+  }
 }
