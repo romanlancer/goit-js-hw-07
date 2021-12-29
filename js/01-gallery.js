@@ -2,6 +2,7 @@ import { galleryItems } from './gallery-items.js'
 // Change code below this line
 // console.log(galleryItems)
 const galleryEl = document.querySelector('.gallery')
+const imageRef = document.querySelectorAll('.gallery__image')
 
 const galleryCardsMarkup = createGalleryCardsMarkup(galleryItems)
 galleryEl.insertAdjacentHTML('beforeend', galleryCardsMarkup)
@@ -38,9 +39,7 @@ function onPictureClick(e) {
   // window.addEventListener('keydown', onEscBtnPress)
   // modalRef.classList.add('is-open')
   imageRef.src = e.target.dataset.source
-  const instance = basicLightbox.create(
-    document.querySelector('.gallery > gallery__image')
-  )
+  const instance = basicLightbox.create(`<img src="${imageRef.src}"/>`)
 
   instance.show()
 }
