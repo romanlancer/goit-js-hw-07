@@ -46,16 +46,12 @@ function onPictureClick(e) {
   instance.show()
 
   if (instance.visible()) {
-    window.addEventListener('keydown', onEscBtnPress)
+    galleryEl.addEventListener('keydown', onEscBtnPress)
   }
 
   function onEscBtnPress(e) {
     if (e.code === 'Escape') {
       instance.close()
     }
-  }
-
-  if (!instance.visible()) {
-    window.removeEventListener('keydown', onEscBtnPress)
   }
 }
